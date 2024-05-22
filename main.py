@@ -1,6 +1,13 @@
 # Define the users and their passwords
 users = {
-    "admin": "password123"
+    "admin": "123"
+}
+
+barang = {
+    "Kursi" : "1",
+    "Meja" : "2",
+    "Sofa" : "3",
+    "Kasur" : "4"
 }
 
 def landing():
@@ -54,12 +61,66 @@ def menu_admin():
     print("4. Cari Barang")
     print("5. Hapus Barang")
     print("6. Keluar")
-    
+    pil_menu = int(input("Masukan Angka Pilihan Yang Tertera : "))
+
+    if pil_menu == 1 :
+        lihatmenuAd(barang)
+    elif pil_menu == 2 :
+        print("Tambah Menu")
+    elif pil_menu == 3 :
+        print("Edit Menu")
+    elif pil_menu == 4 :
+        carimenuAd(barang)
+    elif pil_menu == 5 :
+        print("Hapus Menu")
+    elif pil_menu == 6 : 
+        print("========== TERIMA KASIH ==========")
+        exit
+    else:
+        print("Pilihan Invalid, Mohon Input Ulang")
+        menu_admin()
 
 def menu_user():
     print("========== MENU USER ==========")
     print("1. Lihat Barang")
     print("2. Cari Barang")
+    print("3. Keluar") 
+    pil_menus = int(input("Masukan Angka Pilihan Yang Tertera : "))
+
+    if pil_menus == 1:
+        lihatmenuUs(barang)
+    elif pil_menus == 2:
+        carimenuUs(barang)
+    elif pil_menus == 3:
+        print("========== TERIMA KASIH ==========")
+        exit
+    else:
+        print("Pilihan Invalid, Mohon Input Ulang")
+        menu_user()
+
+def lihatmenuAd(barang):
+    print(f"Data Barang: {barang}")
+    menu_admin()
+
+def carimenuAd(barang):
+    search_value = input("Masukkan nam/kode barang yang ingin Anda cari: ")
+    if search_value in barang.values():
+        print(f"Barang '{search_value}' ditemukan dengan kode '{next(key for key, value in barang.items() if value == search_value)}'.")
+    else:
+        print(f"Barang dengan nama '{search_value}' tidak ditemukan.")
+    menu_admin()
+
+def lihatmenuUs(barang):
+    print(f"Data Barang: {barang}")
+    menu_user()
+
+def carimenuUs(barang):
+    search_value = input("Masukkan nam/kode barang yang ingin Anda cari: ")
+    if search_value in barang.values():
+        print(f"Barang '{search_value}' ditemukan dengan kode '{next(key for key, value in barang.items() if value == search_value)}'.")
+    else:
+        print(f"Barang dengan nama '{search_value}' tidak ditemukan.")
+    menu_user()
 
 
 # Call the login function to start the login process
