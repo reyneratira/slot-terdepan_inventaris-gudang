@@ -3,12 +3,13 @@ users = {
     "admin": "123"
 }
 
-barang = {
-    "Kursi" : "1",
-    "Meja" : "2",
-    "Sofa" : "3",
-    "Kasur" : "4"
-}
+barang = [
+    {"Nama": "Kursi", "kode": "1"},
+    {"Nama": "Meja", "kode": "2"},
+    {"Nama": "Sofa", "kode": "3"},
+    {"Nama": "Kasur", "kode": "4"},
+    {"Nama": "Lampu", "kode": "5"},
+] 
 
 def landing():
     print("Selamat Datang Di Aplikasi Inventaris Gudang!!")
@@ -67,12 +68,13 @@ def menu_admin():
         lihatmenuAd(barang)
     elif pil_menu == 2 :
         print("Tambah Menu")
+        tambahmenuAd(barang)
     elif pil_menu == 3 :
         print("Edit Menu")
     elif pil_menu == 4 :
         carimenuAd(barang)
     elif pil_menu == 5 :
-        print("Hapus Menu")
+        hapusmenuAd(barang)
     elif pil_menu == 6 : 
         print("========== TERIMA KASIH ==========")
         exit
@@ -98,17 +100,50 @@ def menu_user():
         print("Pilihan Invalid, Mohon Input Ulang")
         menu_user()
 
+def tambahmenuAd(barang):
+    jumlah = int(input("Berapa Barang yang ingin ditambahkan: "))
+    while jumlah > 0:
+        kode_barang = input("Masukkan kode barang: ")
+        nama = input("Masukkan Nama barang: ")
+        barang.append({"Nama": nama, "kode": kode_barang})
+        jumlah -= 1
+    print(f"Berhasil menambahkan barang ke daftar barang.")
+    menu_admin()
+
 def lihatmenuAd(barang):
     print(f"Data Barang: {barang}")
     menu_admin()
 
 def carimenuAd(barang):
     search_value = input("Masukkan nam/kode barang yang ingin Anda cari: ")
-    if search_value in barang.values():
-        print(f"Barang '{search_value}' ditemukan dengan kode '{next(key for key, value in barang.items() if value == search_value)}'.")
-    else:
-        print(f"Barang dengan nama '{search_value}' tidak ditemukan.")
+    found = False
+    for item in barang:
+        if item['Nama'] == search_value or item['kode'] == search_value:
+            print(f"Barang dengan kode '{search_value}' yang dicari ditemukan dengan nama '{item['Nama']}'")
+            found = True
+            break
+    if not found:
+        print(f"Barang dengan nam/kode '{search_value}' tidak ditemukan.")
     menu_admin()
+
+def hapusmenuAd(barang):
+    print(f"Data barang: {barang}")
+    while True:
+        kode_barang = input("Masukkan kode barang yang ingin Dihapus: ")
+        found = False
+        for item in barang:
+            if item['kode'] == kode_barang:
+                barang.remove(item)
+                print(f"Barang dengan kode {kode_barang} telah dihapus.")
+                found = True
+                break
+        if not found:
+            print(f"Barang dengan kode {kode_barang} tidak ditemukan. Silakan coba lagi.")
+        else:
+            break
+    print(f"Data barang: {barang}")
+    menu_admin()
+
 
 def lihatmenuUs(barang):
     print(f"Data Barang: {barang}")
