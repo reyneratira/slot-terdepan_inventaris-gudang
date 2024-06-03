@@ -38,21 +38,18 @@ def landing():
         
     
 
-# Function to check if the user exists and the password is correct
 def check_user_password(username, password):
     if username in users and users[username] == password:
         return True
     else:
         return False
 
-# Function to handle the login process
 def login():
     print("=====Welcome to the login system!=====")
     username = input("Enter your username: ")
     password = input("Enter your password: ")
     print("")
 
-    # Check if the user exists and the password is correct
     if check_user_password(username, password):
         print("Login successful!")
         print("Welcome Admin!!")
@@ -62,64 +59,74 @@ def login():
         print("Invalid username or password. Please try again.")
 
 def menu_admin():
-    print("")
-    print("========== MENU ADMIN ==========")
-    print("1. Lihat Barang")
-    print("2. Tambah Barang")
-    print("3. Edit Nama Barang Barang")
-    print("4. Cari Barang Menurut Kode")
-    print("5. Hapus Barang")
-    print("6. Keluar")
-    pil_menu = int(input("Masukan Angka Pilihan Yang Tertera : "))
-    print("")
-
-    if pil_menu == 1 :
-        lihatmenuAd(barang)
-    elif pil_menu == 2 :
-        tambahmenuAd(barang)
-    elif pil_menu == 3 :
-        editmenuAd(barang)
-    elif pil_menu == 4 :
-        carimenuAd(barang)
-    elif pil_menu == 5 :
-        hapusmenuAd(barang)
-    elif pil_menu == 6 : 
-        keluarAd()
-    else:
-        print("Pilihan Invalid, Mohon Input Ulang")
+    while True :
         print("")
-        menu_admin()
+        print("========== MENU ADMIN ==========")
+        try:
+            print("1. Lihat Barang")
+            print("2. Tambah Barang")
+            print("3. Edit Nama Barang Barang")
+            print("4. Cari Barang Menurut Kode")
+            print("5. Hapus Barang")
+            print("6. Keluar")
+            pil_menu = int(input("Masukan Angka Pilihan Yang Tertera : "))
+            print("")
 
+            if pil_menu == 1 :
+                lihatmenuAd(barang)
+            elif pil_menu == 2 :
+                tambahmenuAd(barang)
+            elif pil_menu == 3 :
+                editmenuAd(barang)
+            elif pil_menu == 4 :
+                carimenuAd(barang)
+            elif pil_menu == 5 :
+                hapusmenuAd(barang)
+            elif pil_menu == 6 : 
+                keluarAd()
+            else:
+                print("Pilihan Invalid, Mohon Input Ulang")
+                print("")
+                menu_admin()
+        except(ValueError):
+            print("Mohon masukan angka")
 def menu_user():
-    print("")
-    print("========== MENU USER ==========")
-    print("1. Lihat Barang")
-    print("2. Cari Barang")
-    print("3. Keluar") 
-    pil_menus = int(input("Masukan Angka Pilihan Yang Tertera : "))
-    print("")
+    while True:
+        print("")
+        try :
+            print("========== MENU USER ==========")
+            print("1. Lihat Barang")
+            print("2. Cari Barang")
+            print("3. Keluar") 
+            pil_menus = int(input("Masukan Angka Pilihan Yang Tertera : "))
+            print("")
 
-    if pil_menus == 1:
-        lihatmenuUs(barang)
-    elif pil_menus == 2:
-        carimenuUs(barang)
-    elif pil_menus == 3:
-        keluarUs()
-    else:
-        print("Pilihan Invalid, Mohon Input Ulang")
-        menu_user()
+            if pil_menus == 1:
+                lihatmenuUs(barang)
+            elif pil_menus == 2:
+                carimenuUs(barang)
+            elif pil_menus == 3:
+                keluarUs()
+            else:
+                print("Pilihan Invalid, Mohon Input Ulang")
+                menu_user()
+        except(ValueError):
+            print("Mohon masukan angka")
 
 def tambahmenuAd(barang):
-    jumlah = int(input("Berapa Barang yang ingin ditambahkan: "))
-    print("")
-    while jumlah > 0:
-        kode_barang = input("Masukkan kode barang: ")
-        nama = input("Masukkan Nama barang: ")
-        barang.append({"Nama": nama, "kode": kode_barang})
-        jumlah -= 1
-    print(f"Berhasil menambahkan barang ke daftar barang.")
-    print("")
-    menu_admin()
+    try:
+        jumlah = int(input("Berapa Barang yang ingin ditambahkan (Angka): "))
+        print("")
+        while jumlah > 0:
+            kode_barang = input("Masukkan kode barang: ")
+            nama = input("Masukkan Nama barang: ")
+            barang.append({"Nama": nama, "kode": kode_barang})
+            jumlah -= 1
+        print(f"Berhasil menambahkan barang ke daftar barang.")
+        print("")
+        menu_admin()
+    except(ValueError):
+        print("Mohon masukan input yang sesuai")
 
 def lihatmenuAd(barang):
     print(f"Data Barang: {barang}")
@@ -205,7 +212,7 @@ def keluarAd():
     keluar = input("Apakah anda yakin ingin keluar dari aplikasi? (Y/N): ")
     if keluar == "Y" or keluar == "y":
         print("========== TERIMA KASIH ==========")
-        exit
+        exit()
     elif keluar == "N" or keluar == "n":
         menu_admin()
     else:
@@ -214,7 +221,7 @@ def keluarAd():
         keluarAd()
 
 def keluarUs():
-    keluar = input("Apakah anda yakin ingin keluar dari aplikasi? (Y/N): ")
+    keluar = input("Apakah anda yakin ingin keluar dari aplikasi? (Y/N): ").lower()
     if keluar == "Y" or keluar == "y":
         print("========== TERIMA KASIH ==========")
         exit
