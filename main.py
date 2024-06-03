@@ -224,7 +224,7 @@ def keluarUs():
     keluar = input("Apakah anda yakin ingin keluar dari aplikasi? (Y/N): ").lower()
     if keluar == "Y" or keluar == "y":
         print("========== TERIMA KASIH ==========")
-        exit
+        exit()
     elif keluar == "N" or keluar == "n":
         menu_user()
     else:
