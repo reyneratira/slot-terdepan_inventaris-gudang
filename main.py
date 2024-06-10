@@ -138,10 +138,6 @@ def tambahmenuAd(barang):
         print("Mohon masukan input yang sesuai")
 
 def lihatmenuAd(barang):
-<<<<<<< HEAD
-    for item in barang:
-        print(f"Nama: {item["Nama"]}, Kode: {item["kode"]}")
-=======
     print("========== Data Barang ==========")
     if not barang:
         print("Tidak ada barang dalam daftar.")
@@ -149,7 +145,6 @@ def lihatmenuAd(barang):
         for idx, item in enumerate(barang, start=1):
             print(f"{idx}. Nama: {item['Nama']}, Kode: {item['kode']}")
     print("")
->>>>>>> 0cc4644f5d53441baf2956b56d39d411482b4d46
     menu_admin()
 
 def carimenuAd(barang):
@@ -212,10 +207,6 @@ def hapusmenuAd(barang):
 
 
 def lihatmenuUs(barang):
-<<<<<<< HEAD
-    for item in barang:
-        print(f"Nama: {item["Nama"]}, Kode: {item["kode"]}")
-=======
     print("========== Data Barang ==========")
     if not barang:
         print("Tidak ada barang dalam daftar.")
@@ -223,7 +214,6 @@ def lihatmenuUs(barang):
         for idx, item in enumerate(barang, start=1):
             print(f"{idx}. Nama: {item['Nama']}, Kode: {item['kode']}")
     print("")
->>>>>>> 0cc4644f5d53441baf2956b56d39d411482b4d46
     menu_user()
 
 def carimenuUs(barang):
