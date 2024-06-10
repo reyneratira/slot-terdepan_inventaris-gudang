@@ -50,7 +50,7 @@ def login():
     print("")
 
     attemp = 0
-    while attemp < 2:
+    while attemp < 3:
         if check_user_password(username, password):
             print("Login successful!")
             print("Welcome Admin!!")
