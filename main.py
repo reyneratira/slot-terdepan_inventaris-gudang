@@ -1,12 +1,11 @@
-# Define the users and their passwords
 users = {
-    "admin": "123"
+    "admin": "123",
 }
 
 barang = [
     {"Nama": "Kursi", "kode": "1"},
-    {"Nama": "Meja", "kode": "2"},
-    {"Nama": "Sofa", "kode": "3"},
+    {"Nama": "Meja",  "kode": "2"},
+    {"Nama": "Sofa",  "kode": "3"},
     {"Nama": "Kasur", "kode": "4"},
     {"Nama": "Lampu", "kode": "5"},
 ] 
@@ -50,13 +49,23 @@ def login():
     password = input("Enter your password: ")
     print("")
 
-    if check_user_password(username, password):
-        print("Login successful!")
-        print("Welcome Admin!!")
-        print("")
-        menu_admin()
+    attemp = 0
+    while attemp < 2:
+        if check_user_password(username, password):
+            print("Login successful!")
+            print("Welcome Admin!!")
+            print("")
+            menu_admin()
+            break
+        else:
+            print("Invalid username or password. Please try again.")
+            attemp += 1
+            username = input("Enter your username: ")
+            password = input("Enter your password: ")
+            print("")
     else:
-        print("Invalid username or password. Please try again.")
+        print("Anda telah melampaui jumlah percobaan maksimum. Sistem sekarang akan ditutup!!")
+        exit()
 
 def menu_admin():
     while True :
@@ -129,8 +138,8 @@ def tambahmenuAd(barang):
         print("Mohon masukan input yang sesuai")
 
 def lihatmenuAd(barang):
-    print(f"Data Barang: {barang}")
-    print("")
+    for item in barang:
+        print(f"Nama: {item["Nama"]}, Kode: {item["kode"]}")
     menu_admin()
 
 def carimenuAd(barang):
@@ -193,7 +202,8 @@ def hapusmenuAd(barang):
 
 
 def lihatmenuUs(barang):
-    print(f"Data Barang: {barang}")
+    for item in barang:
+        print(f"Nama: {item["Nama"]}, Kode: {item["kode"]}")
     menu_user()
 
 def carimenuUs(barang):
